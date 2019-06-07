@@ -1,5 +1,5 @@
-;;; The following procedure computes a mathematical function called
-;;; Ackermann’s function.
+;;;; The following procedure computes a mathematical function called
+;;;; Ackermann’s function.
 
 (define (A x y)
   (cond ((= y 0) 0)
