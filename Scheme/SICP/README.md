@@ -1,6 +1,4 @@
-# Scheme
-
-## *World is different with Scheme.*
+# SICP
 
 Here are all exercises I did from the book *Structure and Interpretation of Computer Programs* (SICP).
 
