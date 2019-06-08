@@ -20,25 +20,15 @@
 (define (double x)
   (+ x x))
 
+(define (halve x)
+  (/ x 2))
+
 ;;; Θ(log(b)) steps and Θ(log(b)) space
 (define (multiply-recur a b)
   (cond ((= b 0) 0)
-        ((even? b) (double (multiply-recur a (/ b 2))))
+        ((even? b) (double (multiply-recur a (halve b))))
         (else (+ a (multiply-recur a (- b 1))))))
 
-;;; Θ(log(b)) steps and Θ(1) space
-(define (multiply-iter a b)
-  (define (iter p a b)
-    (cond ((= b 0) p)
-          ((even? b) (iter p (double a) (/ b 2)))
-          (else (iter (+ p a) a (- b 1)))))
-  (iter 0 a b))
-
 (multiply-recur 3 5)
-(multiply-iter 3 5)
-
 (multiply-recur 11 11)
-(multiply-iter 11 11)
-
 (multiply-recur 70 70)
-(multiply-iter 70 70)
