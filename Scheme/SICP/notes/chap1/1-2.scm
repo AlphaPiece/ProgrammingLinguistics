@@ -70,3 +70,5 @@
   (cond ((= n 0) 1)
 		((even? n) (square (fast-expt-recur b (/ n 2)))
 	    (else (* b (fast-expt-recur b (- n 1)))))))
+
+;;; Fast-expt-iter is implemented in exercise 1-16.
