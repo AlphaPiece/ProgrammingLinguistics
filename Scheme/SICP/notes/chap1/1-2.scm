@@ -1,26 +1,3 @@
-;;; 1.1.4
-
-(define (square x)
-  (* x x))
-
-;;; 1.1.7
-
-(define (average x y)
-  (/ (+ x y) 2))
-
-;;; 1.1.8
-
-(define (sqrt x)
-  (define (good-enough? guess)
-    (= (improve guess) guess))
-  (define (improve guess)
-    (average guess (/ x guess)))
-  (define (sqrt-iter guess)
-    (if (good-enough? guess)
-        guess
-        (sqrt-iter (improve guess))))
-  (sqrt-iter 1.0))
-
 ;;; 1.2.1
 
 (define (factorial-recur n)
@@ -67,3 +44,29 @@
 				          (first-denomination kinds-of-coins))
 				       kinds-of-coins)))))
   (cc amount 5))
+
+;;; 1.2.4
+
+;;; Θ(n) steps and Θ(n) space.
+(define (expt-recur b n)
+  (if (= n 0)
+	  1
+	  (* b (expt-recur b (- n 1)))))
+
+;;; Θ(n) steps and Θ(1) space.
+(define (expt-iter b n)
+  (define (iter product counter)
+	(if (= counter n)
+	    product
+		(iter (* product b)
+			  (+ counter 1))))
+  (iter 1 0))
+
+(define (even? n)
+  (= (remainder n 2) 0))
+
+;;; Θ(log(n)) steps and Θ(log(n)) space.
+(define (fast-expt-recur b n)
+  (cond ((= n 0) 1)
+		((even? n) (square (fast-expt-recur b (/ n 2)))
+	    (else (* b (fast-expt-recur b (- n 1)))))))
