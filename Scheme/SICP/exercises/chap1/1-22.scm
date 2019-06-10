@@ -71,10 +71,10 @@
 ;;; The three samllest primes larger than 1000000:
 ;;; 1000003, 1000033, 1000037.
 
- (search-for-primes 1000000000 1000000021)       ; 1e9 
- (search-for-primes 10000000000 10000000061)     ; 1e10 
- (search-for-primes 100000000000 100000000057)   ; 1e11 
- (search-for-primes 1000000000000 1000000000063) ; 1e12
+(search-for-primes 1000000000 1000000021)       ; 1e9 
+(search-for-primes 10000000000 10000000061)     ; 1e10 
+(search-for-primes 100000000000 100000000057)   ; 1e11 
+(search-for-primes 1000000000000 1000000000063) ; 1e12
 
 ;;; Output:
 ;;;
