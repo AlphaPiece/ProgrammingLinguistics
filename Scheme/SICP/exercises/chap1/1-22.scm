@@ -76,8 +76,6 @@
 (search-for-primes 100000000000 100000000057)   ; 1e11 
 (search-for-primes 1000000000000 1000000000063) ; 1e12
 
-;;; Output:
-;;;
 ;;; 1000000007 *** 1.9999999999999997e-2
 ;;; 1000000009 *** 2.0000000000000004e-2
 ;;; 10000000019 *** .07
@@ -86,7 +84,7 @@
 ;;; 100000000019 *** .21000000000000002
 ;;; 1000000000039 *** .6799999999999999
 ;;; 1000000000061 *** .6599999999999999
-;;;
+
 ;;; From our timing data, we can observe that, when increasing the tested
 ;;; number of a factor 10, the required time increases roughly of a factor 3.
 ;;; By noting that 3 ≅ √10, we can confirm both the growth prediction and the

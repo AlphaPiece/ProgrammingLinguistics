@@ -113,6 +113,10 @@
 (gcd 234 67)
 (gcd 91 63)
 
+;;;
+;;; 1.2.6
+;;;
+
 (define (smallest-divisor n)
   (find-divisor n 2))
 
@@ -143,19 +147,27 @@
 
 (define (expmod-iter b n m)
   (define (iter a b n)
-    (cond ((= n 0) (remainder a m))
-          ((even? n) (iter a (square b) (/ n 2)))
-          (else (iter (* a b) b (- n 1)))))
+    (cond ((= n 0) a)
+          ((even? n) (iter a
+                           (remainder (square b) m)
+                           (/ n 2)))
+          (else (iter (remainder (* a b) m)
+                      b
+                      (- n 1)))))
   (iter 1 b n))
 
 (expmod-recur 2 6 6)
 (expmod-iter 2 6 6)
 (expmod-recur 5 7 13)
 (expmod-iter 5 7 13)
+(expmod-recur 101 12 43)
+(expmod-iter 101 12 43)
+(expmod-recur 5000 100003 100003)
+(expmod-iter 5000 100003 100003)
 
 (define (fermat-test n)
   (define (try-it a)
-    (= (expmod a n n) a))
+    (= (expmod-recur a n n) a))
   (try-it (+ 1 (random (- n 1)))))
 
 (define (fast-prime? n times)

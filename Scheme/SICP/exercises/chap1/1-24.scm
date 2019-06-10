@@ -14,9 +14,20 @@
           (remainder (* b (expmod-recur b (- n 1) m))
                      m))))
 
+(define (expmod-iter b n m)
+  (define (iter a b n)
+    (cond ((= n 0) a)
+          ((even? n) (iter a
+                           (remainder (square b) m)
+                           (/ n 2)))
+          (else (iter (remainder (* a b) m)
+                      b
+                      (- n 1)))))
+  (iter 1 b n))
+
 (define (fermat-test n)
   (define (try-it a)
-    (= (expmod-recur a n n) a))
+    (= (expmod-iter a n n) a))
   (try-it (+ 1 (random (- n 1)))))
 
 (define (fast-prime? n times)
