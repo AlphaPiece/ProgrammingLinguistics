@@ -1,1 +1,5 @@
-(count-change 100)
+(define (greeting)
+  (newline)
+  (display "Hello, World!"))
+
+(greeting)
