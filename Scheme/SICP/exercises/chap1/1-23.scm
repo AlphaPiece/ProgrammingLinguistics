@@ -57,3 +57,5 @@
 (search-for-primes 1000000000000 1000000000063) ; 1e12
 
 ;;; The observed ratio is roughly 1.5.
+;;; The reason that the ratio is not exacly 2 is that we have an extra
+;;; if-statement which checks a condition in every loop of find-divisor.
