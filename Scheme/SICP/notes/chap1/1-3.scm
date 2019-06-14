@@ -35,3 +35,11 @@
   (sum pi-term a pi-next b))
 
 (* 8 (pi-sum 1 10000))
+
+(define (integral f a b dx)
+  (define (add-dx x) (+ x dx))
+  (* (sum f (+ a (/ dx 2.0)) add-dx b)
+     dx))
+
+(integral cube 0 1 0.001)
+(integral cube 0 1 0.0001)
