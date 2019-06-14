@@ -1,3 +1,5 @@
+;;;; Notes for Section 1.1
+
 ;;; 1.1.4
 
 (define (square x)
