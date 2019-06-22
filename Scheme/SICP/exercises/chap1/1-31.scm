@@ -17,6 +17,9 @@
 ;;; an iterative process, write one that generates a recursive
 ;;; process.
 
+
+
+
 (define (product-recur term a next b)
   (if (> a b)
       1
@@ -46,7 +49,36 @@
 (factorial-iter 1)
 (factorial-recur 4)
 (factorial-iter 4)
-(factorial-recur 5)
-(factorial-iter 5)
 (factorial-recur 6)
 (factorial-iter 6)
+
+(define (pi limit)
+  (define (pi-over-4-numerator limit)
+    (define (term n)
+      (+ (* (quotient n 2) 2) 2))
+    (product-iter term 1 inc limit))
+  (define (pi-over-4-denominator limit)
+    (define (term n)
+      (+ (* (quotient n 2) 2) 3))
+    (product-iter term 0 inc (- limit 1)))
+  (* 4.0 (/ (pi-over-4-numerator limit)
+     (pi-over-4-denominator limit))))
+
+(define (pi limit)
+  (define (pi-over-4-term n)
+    (/ (+ (* (quotient (+ n 1) 2) 2) 2)
+       (+ (* (quotient n 2) 2) 3)))
+  (* 4 (product-iter pi-over-4-term 0 inc limit)))
+
+(define (pi limit)
+  (define (pi-over-4-term n)
+    (if (odd? n)
+        (/ (+ n 1) (+ n 2))
+        (/ (+ n 2) (+ n 1))))
+  (* 4.0 (product-iter pi-over-4-term 1 inc limit)))
+
+(pi 100)
+(pi 200)
+(pi 400)
+(pi 1000)
+(pi 2000)
