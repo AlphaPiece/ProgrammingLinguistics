@@ -1,3 +1,5 @@
+;;;; Exercise 1.7
+
 ;;; The good-enough? test used in computing square roots will not be very
 ;;; effective for finding the square roots of very small numbers. Also, in
 ;;; real computers, arithmetic operations are almost always performed with
@@ -37,7 +39,7 @@
   (if (good-enough? guess x)
       guess
       (sqrt-iter (improve guess x)
-             x)))
+                 x)))
 
 (define (improve guess x)
   (average guess (/ x guess)))

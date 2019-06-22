@@ -1,3 +1,5 @@
+;;;; Exercise 1.6
+
 ;;; Why does 'if' need to be provided as a special form? Why can't we just
 ;;; define it as an ordinary procedure in terms of 'cond'?
 

@@ -1,3 +1,5 @@
+;;;; Exercise 1.5
+
 ;;; A test to determine whether the interpreter I'm faced with is using
 ;;; applicative-order evaluation or normal-order evaluation.
 

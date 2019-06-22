@@ -1,3 +1,5 @@
+;;;; Exercise 1.8
+
 ;;; Implement cbrt (cube root) using Newton's method for cube roots.
 
 (define (cbrt-iter guess x)

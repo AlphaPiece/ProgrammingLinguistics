@@ -1,3 +1,5 @@
+;;;; Exercise 1.15
+
 ;;; The sine of an angle (specified in radians) can be computed by making use
 ;;; of the approximation sin x ≈ x if x is sufficiently small, and the
 ;;; trigonometric identity

@@ -1,3 +1,5 @@
+;;;; Exercise 1.25
+
 ;;; Alyssa P. Hacker complains that we went to a lot of extra work in
 ;;; writingexpmod. After all, she says, since we already know how to compute
 ;;; exponentials, we could have simply written:

@@ -1,3 +1,5 @@
+;;;; Exercise 1.22
+
 ;;; Most Lisp implementations include a primitive called runtime that
 ;;; returns an integer that specifies the amount of time the system has been
 ;;; running (measured, for example, in microseconds). The following

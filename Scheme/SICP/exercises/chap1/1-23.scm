@@ -1,3 +1,5 @@
+;;;; Exercise 1.23
+
 ;;; The smallest-divisor procedure shown at the start of this section does lots
 ;;; of needless testing: After it checks to see if the number is divisible by 2
 ;;; there is no point in checking to see if it is divisible by any larger even

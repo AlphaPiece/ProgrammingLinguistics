@@ -1,3 +1,5 @@
+;;;; Exercise 1.12
+
 ;;; The following pattern of numbers is called Pascal’s triangle.
 ;;;      1
 ;;;     1 1
