@@ -17,7 +17,9 @@
   (= (remainder b a) 0))
 
 (define (prime? n)
-  (= (smallest-divisor n) n))
+  (if (<= n 1)
+      false
+      (= (smallest-divisor n) n)))
 
 (define (expmod-iter b n m)
   (define (iter a b n)
