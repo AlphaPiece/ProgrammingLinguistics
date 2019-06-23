@@ -17,9 +17,6 @@
 ;;; an iterative process, write one that generates a recursive
 ;;; process.
 
-
-
-
 (define (product-recur term a next b)
   (if (> a b)
       1
