@@ -20,14 +20,14 @@
                  (+ (d i) result)))))
   (iter k 0))
 
-(define euler-e
+(define (euler-e k)
   (+ (cont-frac (lambda (i) 1.0)
                 (lambda (i)
                   (let ((j (+ i 1)))
                     (if (= (remainder j 3) 0)
                         (* (/ j 3) 2)
                         1)))
-                20)
+                k)
      2))
 
-euler-e
+(euler-e 20)
