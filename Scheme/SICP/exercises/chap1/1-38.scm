@@ -12,12 +12,13 @@
 ;;; exercise 1.37 to approximate e, based on Euler’s expansion.
 
 (define (cont-frac n d k)
-  (define (recur i)
-    (if (= i k)
-        (/ (n k) (d k))
-        (/ (n i) (+ (d i)
-                    (recur (+ i 1))))))
-  (recur 1))
+  (define (iter i result)
+    (if (= i 0)
+        result
+        (iter (- i 1)
+              (/ (n i)
+                 (+ (d i) result)))))
+  (iter k 0))
 
 (define euler-e
   (+ (cont-frac (lambda (i) 1.0)
