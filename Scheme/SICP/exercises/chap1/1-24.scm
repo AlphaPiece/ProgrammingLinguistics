@@ -7,16 +7,18 @@
 ;;; test primes near 1000? Do your data bear this out? Can you explain any
 ;;; discrepancy you find?
 
-(define (expmod-recur b n m)
+;;; Recursive Process
+(define (expmod b n m)
   (cond ((= n 0) 1)
         ((even? n)
-         (remainder (square (expmod-recur b (/ n 2) m))
+         (remainder (square (expmod b (/ n 2) m))
                     m))
         (else
-          (remainder (* b (expmod-recur b (- n 1) m))
+          (remainder (* b (expmod b (- n 1) m))
                      m))))
 
-(define (expmod-iter b n m)
+;;; Iterative Process
+(define (expmod b n m)
   (define (iter a b n)
     (cond ((= n 0) a)
           ((even? n) (iter a
@@ -29,7 +31,7 @@
 
 (define (fermat-test n)
   (define (try-it a)
-    (= (expmod-iter a n n) a))
+    (= (expmod a n n) a))
   (try-it (+ 1 (random (- n 1)))))
 
 (define (fast-prime? n times)
@@ -61,6 +63,8 @@
         (check start)))
   (iter start))
 
+;;; The running times of tests below are between 0 and 0.01.
+
 (timed-prime-test 1009)
 (timed-prime-test 1013)
 (timed-prime-test 1019)
@@ -74,7 +78,7 @@
 (timed-prime-test 1000033) 
 (timed-prime-test 1000037)
 
-;;; The running times of tests above are between 0 and 0.01.
+;;; The running times of test below are between 0.01 and 0.02.
 
 (timed-prime-test 1000000007)
 (timed-prime-test 1000000009)
@@ -88,8 +92,6 @@
 (timed-prime-test 1000000000039)
 (timed-prime-test 1000000000061)
 (timed-prime-test 1000000000063)
-
-;;; The running times of test above are between 0.01 and 0.02.
 
 ;;; From the collected timing data, we can observe that testing a number with
 ;;; twice as many digits (1e12 vs. 1e6) is roughly twice as slow. This supports

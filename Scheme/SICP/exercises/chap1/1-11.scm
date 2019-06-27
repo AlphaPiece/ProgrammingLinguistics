@@ -8,14 +8,23 @@
 ;;; Write a procedure that computes f by means of a recursive process.
 ;;; Write a procedure that computes f by means of an iterative process.
 
-(define (f-recur n)
+;;; Recursive Process
+(define (f n)
   (if (< n 3)
       n
-      (+ (f-recur (- n 1))
-         (* 2 (f-recur (- n 2)))
-         (* 3 (f-recur (- n 3))))))
+      (+ (f (- n 1))
+         (* 2 (f (- n 2)))
+         (* 3 (f (- n 3))))))
 
-(define (f-iter n)
+(f 1)
+(f 2)
+(f 3)
+(f 4)
+(f 5)
+(f 6)
+
+;;; Iterative Process
+(define (f n)
   (define (iter a b c counter)
     (if (>= counter n)
         a
@@ -27,15 +36,9 @@
       n
       (iter 0 1 2 0)))
 
-(f-recur 1)
-(f-iter 1)
-(f-recur 2)
-(f-iter 2)
-(f-recur 3)
-(f-iter 3)
-(f-recur 4)
-(f-iter 4)
-(f-recur 5)
-(f-iter 5)
-(f-recur 6)
-(f-iter 6)
+(f 1)
+(f 2)
+(f 3)
+(f 4)
+(f 5)
+(f 6)

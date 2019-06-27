@@ -21,7 +21,7 @@
       false
       (= (smallest-divisor n) n)))
 
-(define (expmod-iter b n m)
+(define (expmod b n m)
   (define (iter a b n)
     (cond ((= n 0) a)
           ((even? n) (iter a
@@ -35,7 +35,7 @@
 (define (test-fermat-congruency n)
   (define (iter a)
     (if (< a n)
-        (and (= (expmod-iter a n n) a)
+        (and (= (expmod a n n) a)
              (iter (+ a 1)))
         true))
   (iter 0))

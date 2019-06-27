@@ -4,13 +4,13 @@
 ;;; writingexpmod. After all, she says, since we already know how to compute
 ;;; exponentials, we could have simply written:
 
-(define (fast-expt-recur b n)
+(define (fast-expt b n)
   (cond ((= n 0) 1)
-        ((even? n) (square (fast-expt-recur b (/ n 2))))
-        (else (* b (fast-expt-recur b (- n 1))))))
+        ((even? n) (square (fast-expt b (/ n 2))))
+        (else (* b (fast-expt b (- n 1))))))
 
 (define (expmod base exp m)
-  (remainder (fast-expt-recur base exp) m))
+  (remainder (fast-expt base exp) m))
 
 ;;; Is she correct? Would this procedure serve as well for our fast prime
 ;;; tester? Explain.
@@ -21,16 +21,22 @@
   (display x)
   (* x x))
 
-(define (expmod-recur b n m)
+(expmod 5 101 101)
+
+;;; Recursive Process
+(define (expmod b n m)
   (cond ((= n 0) 1)
         ((even? n)
-         (remainder (square (expmod-recur b (/ n 2) m))
+         (remainder (square (expmod b (/ n 2) m))
                     m))
         (else
-          (remainder (* b (expmod-recur b (- n 1) m))
+          (remainder (* b (expmod b (- n 1) m))
                      m))))
 
-(define (expmod-iter b n m)
+(expmod 5 101 101)
+
+;;; Iterative Process
+(define (expmod b n m)
   (define (iter a b n)
     (cond ((= n 0) a)
           ((even? n) (iter a
@@ -41,14 +47,11 @@
                       (- n 1)))))
   (iter 1 b n))
 
-(expmod-recur 18 123456789 98765)
-(expmod-iter 18 123456789 98765)
-
 (expmod 5 101 101)
-(expmod-recur 5 101 101)
-(expmod-iter 5 101 101)
 
-;;; (expmod-recur 5 101 101)
+;;; A correct expmod with recusive process.
+;;;
+;;; (expmod 5 101 101)
 ;;; square 5
 ;;; square 24
 ;;; square 71
@@ -56,6 +59,8 @@
 ;;; square 1
 ;;; square 1
 ;;; ;Value: 5
+
+;;; A correct expmod with iterative process:
 ;;;
 ;;; (expmod-iter 5 101 101)
 ;;; square 5
@@ -65,6 +70,8 @@
 ;;; square 31
 ;;; square 52
 ;;; ;Value: 5
+
+;;; Alyssa's expmod:
 ;;;
 ;;; (expmod 5 101 101)
 ;;; square 5

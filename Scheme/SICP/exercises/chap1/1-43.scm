@@ -21,17 +21,20 @@
 (define (compose f g)
   (lambda (x) (f (g x))))
 
-(define (repeated-recur f n)
+;;; Recursive Process
+(define (repeated f n)
   (if (= n 1)
       f
-      (repeated-recur (compose f f) (- n 1))))
+      (repeated (compose f f) (- n 1))))
 
-(define (repeated-iter f n)
+((repeated square 2) 5)
+
+;;; Iterative Process
+(define (repeated f n)
   (define (iter g i)
     (if (= i n)
         g
         (iter (compose f g) (+ i 1))))
   (iter f 1))
 
-((repeated-recur square 2) 5)
-((repeated-iter square 2) 5)     
+((repeated square 2) 5)

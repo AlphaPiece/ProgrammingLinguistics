@@ -12,9 +12,7 @@
 ;;; actually performed in the normal-order evaluation of (gcd 206 40)? In the
 ;;; applicative-order evaluation?
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Normal-order Evaluation ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Normal-order Evaluation
 
 (gcd 206 40)
 ;; (if (= 40 0) ...)
@@ -51,9 +49,9 @@
 
 ;;; There are 18 remainder operations in normal-order evaluation.
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Applicative-order Evaluation ;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Applicative-order Evaluation
 
 (gcd 206 40)
 

@@ -49,7 +49,8 @@
 ;;; an iterative process, write one that generates a recursive
 ;;; process.
 
-(define (cont-frac-recur n d k)
+;;; Recursive Process
+(define (cont-frac n d k)
   (define (recur i)
     (if (= i k)
         (/ (n k) (d k))
@@ -57,7 +58,12 @@
                     (recur (+ i 1))))))
   (recur 1))
 
-(define (cont-frac-iter n d k)
+(cont-frac (lambda (i) 1.0)
+           (lambda (i) 1.0)
+           13)
+
+;;; Iterative Process
+(define (cont-frac n d k)
   (define (iter i result)
     (if (= i 0)
         result
@@ -66,13 +72,9 @@
                  (+ (d i) result)))))
   (iter k 0))
 
-(cont-frac-recur (lambda (i) 1.0)
-                 (lambda (i) 1.0)
-                 13)
-
-(cont-frac-iter (lambda (i) 1.0)
-                (lambda (i) 1.0)
-                14)
+(cont-frac (lambda (i) 1.0)
+           (lambda (i) 1.0)
+           13)
 
 ;;; 8-terms:        0.6176470588235294 -> 0.6176
 ;;; 9-terms:        0.6181818181818182 -> 0.6182

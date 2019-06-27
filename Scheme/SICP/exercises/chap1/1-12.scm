@@ -27,18 +27,13 @@
 
 (pascal-triangle 0 2)
 0
-
 (pascal-triangle 4 5)
 0
-
 (pascal-triangle 2 1)
 1
-
 (pascal-triangle 4 3)
 3
-
 (pascal-triangle 5 3)
 6
-
 (pascal-triangle 6 2)
 5

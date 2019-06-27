@@ -7,7 +7,8 @@
 ;;; The following multiplication procedure (in which it is assumed that our
 ;;; language can only add, not multiply) is analogous to the expt procedure:
 
-;;; Θ(b) steps and Θ(b) space.
+;;; Recursive Process
+;;; Θ(b) steps and Θ(b) space
 (define (* a b)
   (if (= b 0)
       0
@@ -25,12 +26,13 @@
 (define (halve x)
   (/ x 2))
 
+;;; Recursive Process
 ;;; Θ(log(b)) steps and Θ(log(b)) space
-(define (multiply-recur a b)
+(define (* a b)
   (cond ((= b 0) 0)
-        ((even? b) (double (multiply-recur a (halve b))))
-        (else (+ a (multiply-recur a (- b 1))))))
+        ((even? b) (double (* a (halve b))))
+        (else (+ a (* a (- b 1))))))
 
-(multiply-recur 3 5)
-(multiply-recur 11 11)
-(multiply-recur 70 70)
+(* 3 5)
+(* 11 11)
+(* 70 70)

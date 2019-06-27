@@ -18,43 +18,6 @@
 ;;; are relatively prime to n (i.e., all positive integers i < n
 ;;; such that GCD(i,n) = 1).
 
-(define (filtered-accumulate-recur combine
-                                   satisfy?
-                                   null-value
-                                   term
-                                   a
-                                   next
-                                   b)
-  (if (> a b)
-      null-value
-      (combine (if (satisfy? a)
-                   (term a)
-                   null-value)
-               (filtered-accumulate-recur combine
-                                          satisfy?
-                                          null-value
-                                          term
-                                          (next a)
-                                          next
-                                          b))))
-
-(define (filtered-accumulate-iter combine
-                                  satisfy?
-                                  null-value
-                                  term
-                                  a
-                                  next
-                                  b)
-  (define (iter a result)
-    (if (> a b)
-        result
-        (iter (next a)
-              (combine (if (satisfy? a)
-                           (term a)
-                           null-value)
-                       result))))
-  (iter a null-value))
-
 (define (smallest-divisor n)
   (find-divisor n 2))
 
@@ -77,23 +40,63 @@
 
 (define (inc n) (+ n 1))
 
-(define (sum-sq-prime-recur a b)
-  (filtered-accumulate-recur + prime? 0 square a inc b))
+;;; Recursive Process
+(define (filtered-accumulate combine
+                             satisfy?
+                             null-value
+                             term
+                             a
+                             next
+                             b)
+  (if (> a b)
+      null-value
+      (combine (if (satisfy? a)
+                   (term a)
+                   null-value)
+               (filtered-accumulate combine
+                                    satisfy?
+                                    null-value
+                                    term
+                                    (next a)
+                                    next
+                                    b))))
 
-(define (product-relatively-prime-recur n)
+(define (sum-sq-prime a b)
+  (filtered-accumulate + prime? 0 square a inc b))
+
+(define (product-relatively-prime n)
   (define (relatively-prime? m)
     (= (gcd m n) 1))
-  (filtered-accumulate-recur * relatively-prime? 1 identity 1 inc (- n 1)))
+  (filtered-accumulate * relatively-prime? 1 identity 1 inc (- n 1)))
 
-(define (sum-sq-prime-iter a b)
-  (filtered-accumulate-iter + prime? 0 square a inc b))
+(sum-sq-prime 1 5)
+(product-relatively-prime 10)
 
-(define (product-relatively-prime-iter n)
+;;; Iterative Process
+(define (filtered-accumulate combine
+                             satisfy?
+                             null-value
+                             term
+                             a
+                             next
+                             b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a)
+              (combine (if (satisfy? a)
+                           (term a)
+                           null-value)
+                       result))))
+  (iter a null-value))
+
+(define (sum-sq-prime a b)
+  (filtered-accumulate + prime? 0 square a inc b))
+
+(define (product-relatively-prime n)
   (define (relatively-prime? m)
     (= (gcd m n) 1))
-  (filtered-accumulate-iter * relatively-prime? 1 identity 1 inc (- n 1)))
+  (filtered-accumulate * relatively-prime? 1 identity 1 inc (- n 1)))
 
-(sum-sq-prime-recur 1 5)
-(sum-sq-prime-iter 1 5)
-(product-relatively-prime-recur 10)
-(product-relatively-prime-iter 10)
+(sum-sq-prime 1 5)
+(product-relatively-prime 10)

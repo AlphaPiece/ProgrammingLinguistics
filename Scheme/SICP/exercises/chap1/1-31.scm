@@ -17,47 +17,50 @@
 ;;; an iterative process, write one that generates a recursive
 ;;; process.
 
-(define (product-recur term a next b)
+(define (identity x) x)
+
+(define (inc n) (+ n 1))
+
+;;; Recursive Process
+(define (product term a next b)
   (if (> a b)
       1
       (* (term a)
-         (product-recur term (next a) next b))))
+         (product term (next a) next b))))
 
-(define (product-iter term a next b)
+(define (factorial n)
+  (product identity 1 inc n))
+
+(factorial 0)
+(factorial 1)
+(factorial 4)
+(factorial 6)
+
+;;; Iterative Process
+(define (product term a next b)
   (define (iter a result)
     (if (> a b)
         result
         (iter (next a) (* (term a) result))))
   (iter a 1))
 
-(define (identity x) x)
+(define (factorial n)
+  (product identity 1 inc n))
 
-(define (inc n) (+ n 1))
-
-(define (factorial-recur n)
-  (product-recur identity 1 inc n))
-
-(define (factorial-iter n)
-  (product-iter identity 1 inc n))
-
-(factorial-recur 0)
-(factorial-iter 0)
-(factorial-recur 1)
-(factorial-iter 1)
-(factorial-recur 4)
-(factorial-iter 4)
-(factorial-recur 6)
-(factorial-iter 6)
+(factorial 0)
+(factorial 1)
+(factorial 4)
+(factorial 6)
 
 (define (pi limit)
   (define (pi-over-4-numerator limit)
     (define (term n)
       (+ (* (quotient n 2) 2) 2))
-    (product-iter term 1 inc limit))
+    (product term 1 inc limit))
   (define (pi-over-4-denominator limit)
     (define (term n)
       (+ (* (quotient n 2) 2) 3))
-    (product-iter term 0 inc (- limit 1)))
+    (product term 0 inc (- limit 1)))
   (* 4.0 (/ (pi-over-4-numerator limit)
      (pi-over-4-denominator limit))))
 
@@ -65,14 +68,14 @@
   (define (pi-over-4-term n)
     (/ (+ (* (quotient (+ n 1) 2) 2) 2)
        (+ (* (quotient n 2) 2) 3)))
-  (* 4 (product-iter pi-over-4-term 0 inc limit)))
+  (* 4 (product pi-over-4-term 0 inc limit)))
 
 (define (pi limit)
   (define (pi-over-4-term n)
     (if (odd? n)
         (/ (+ n 1) (+ n 2))
         (/ (+ n 2) (+ n 1))))
-  (* 4.0 (product-iter pi-over-4-term 1 inc limit)))
+  (* 4.0 (product pi-over-4-term 1 inc limit)))
 
 (pi 100)
 (pi 200)
