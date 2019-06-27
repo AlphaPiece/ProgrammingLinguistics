@@ -14,7 +14,17 @@
 ;;; smoothed function of any given function using smooth and
 ;;; repeated from exercise 1.43.
 
-(define dx 0.01)
+(define (compose f g)
+  (lambda (x) (f (g x))))
+
+(define (repeated f n)
+  (define (iter g i)
+    (if (= i n)
+        g
+        (iter (compose f g) (+ i 1))))
+  (iter f 1))
+
+(define dx 0.001)
 
 (define (smooth f)
   (lambda (x) (/ (+ (f (- x dx))
@@ -22,5 +32,7 @@
                     (f (+ x dx)))
                  3)))
 
-((repeated smooth 3) f)
+(define (n-fold-smooth f n)
+  ((repeated smooth n) f))
 
+((n-fold-smooth square 10) 3)
