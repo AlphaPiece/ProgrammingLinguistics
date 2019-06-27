@@ -7,17 +7,6 @@
 ;;; test primes near 1000? Do your data bear this out? Can you explain any
 ;;; discrepancy you find?
 
-;;; Recursive Process
-(define (expmod b n m)
-  (cond ((= n 0) 1)
-        ((even? n)
-         (remainder (square (expmod b (/ n 2) m))
-                    m))
-        (else
-          (remainder (* b (expmod b (- n 1) m))
-                     m))))
-
-;;; Iterative Process
 (define (expmod b n m)
   (define (iter a b n)
     (cond ((= n 0) a)

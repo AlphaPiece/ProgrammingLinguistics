@@ -13,6 +13,8 @@
 ;;; remains unchanged from state to state is a powerful way to think about
 ;;; the design of iterative algorithms.)
 
+;;; Iterative Process
+;;; Θ(log(n)) steps and Θ(1) space
 (define (fast-expt b n)
   (define (iter a b n)
     (cond ((= n 0) a)

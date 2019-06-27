@@ -4,12 +4,17 @@
 ;;; 1.2.1
 ;;;
 
-(define (factorial-recur n)
+;;; Recursive Process
+(define (factorial n)
   (if (= n 1)
       1
-      (* n (factorial-recur (- n 1)))))
+      (* n (factorial (- n 1)))))
 
-(define (factorial-iter n)
+(factorial 5)
+(factorial 7)
+
+;;; Iterative Process
+(define (factorial n)
   (define (iter product counter)
     (if (> counter n)
 	    product
@@ -17,21 +22,24 @@
 		      (+ counter 1))))
   (iter 1 1))
 
-(factorial-recur 5)
-(factorial-iter 5)
-(factorial-recur 7)
-(factorial-iter 7)
+(factorial 5)
+(factorial 7)
 
 ;;;
 ;;; 1.2.2
 ;;;
 
-(define (fib-recur n)
+;;; Recursive Process
+(define (fib n)
   (cond ((= n 0) 0)
         ((= n 1) 1)
-		(else (+ (fib-recur (- n 1))
-		         (fib-recur (- n 2))))))
+		(else (+ (fib (- n 1))
+		         (fib (- n 2))))))
 
+(fib 5)
+(fib 7)
+
+;;; Iterative Process
 (define (fib-iter n)
   (define (iter a b counter)
     (if (= counter n)
@@ -39,10 +47,8 @@
 		(iter b (+ a b) (+ counter 1))))
   (iter 0 1 0))
 
-(fib-recur 5)
-(fib-iter 5)
-(fib-recur 7)
-(fib-iter 7)
+(fib 5)
+(fib 7)
 
 (define (count-change amount)
   (define (first-denomination kinds-of-coins)
@@ -68,14 +74,19 @@
 ;;; 1.2.4
 ;;;
 
-;;; Θ(n) steps and Θ(n) space.
-(define (expt-recur b n)
+;;; Recursive Process
+;;; Θ(n) steps and Θ(n) space
+(define (expt b n)
   (if (= n 0)
 	  1
-	  (* b (expt-recur b (- n 1)))))
+	  (* b (expt b (- n 1)))))
 
-;;; Θ(n) steps and Θ(1) space.
-(define (expt-iter b n)
+(expt 2 6)
+(expt 3 3)
+
+;;; Iterative Process
+;;; Θ(n) steps and Θ(1) space
+(define (expt b n)
   (define (iter product counter)
 	(if (= counter n)
 	    product
@@ -83,24 +94,23 @@
 			  (+ counter 1))))
   (iter 1 0))
 
-(expt-recur 2 6)
-(expt-iter 2 6)
-(expt-recur 3 3)
-(expt-iter 3 3)
+(expt 2 6)
+(expt 3 3)
 
 (define (even? n)
   (= (remainder n 2) 0))
 
-;;; Θ(log(n)) steps and Θ(log(n)) space.
-(define (fast-expt-recur b n)
+;;; Recursive Process
+;;; Θ(log(n)) steps and Θ(log(n)) space
+(define (fast-expt b n)
   (cond ((= n 0) 1)
-		((even? n) (square (fast-expt-recur b (/ n 2))))
-	    (else (* b (fast-expt-recur b (- n 1))))))
+		((even? n) (square (fast-expt b (/ n 2))))
+	    (else (* b (fast-expt b (- n 1))))))
 
-(fast-expt-recur 3 4)
-(fast-expt-recur 10 3)
+(fast-expt 3 4)
+(fast-expt 10 3)
 
-;;; Fast-expt-iter is implemented in exercise 1-16.
+;;; Fast-expt with iterative process is implemented in exercise 1-16.
 
 ;;;
 ;;; 1.2.5
@@ -138,16 +148,23 @@
 (prime? 121)
 (prime? 5739)
 
-(define (expmod-recur b n m)
+;;; Recursive Process
+(define (expmod b n m)
   (cond ((= n 0) 1)
         ((even? n)
-         (remainder (square (expmod-recur b (/ n 2) m))
+         (remainder (square (expmod b (/ n 2) m))
                     m))
         (else
-          (remainder (* b (expmod-recur b (- n 1) m))
+          (remainder (* b (expmod b (- n 1) m))
                      m))))
 
-(define (expmod-iter b n m)
+(expmod 2 6 6)
+(expmod 5 7 13)
+(expmod 101 12 43)
+(expmod 5000 100003 100003)
+
+;;; Iterative Process
+(define (expmod b n m)
   (define (iter a b n)
     (cond ((= n 0) a)
           ((even? n) (iter a
@@ -158,14 +175,10 @@
                       (- n 1)))))
   (iter 1 b n))
 
-(expmod-recur 2 6 6)
-(expmod-iter 2 6 6)
-(expmod-recur 5 7 13)
-(expmod-iter 5 7 13)
-(expmod-recur 101 12 43)
-(expmod-iter 101 12 43)
-(expmod-recur 5000 100003 100003)
-(expmod-iter 5000 100003 100003)
+(expmod 2 6 6)
+(expmod 5 7 13)
+(expmod 101 12 43)
+(expmod 5000 100003 100003)
 
 (define (fermat-test n)
   (define (try-it a)

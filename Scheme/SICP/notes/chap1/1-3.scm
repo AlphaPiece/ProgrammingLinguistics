@@ -198,9 +198,13 @@
                             average-damp
                             1.0))
 
+(sqrt 2)
+
 ;;; Method 2
 
 (define (sqrt x)
   (fixed-point-of-transform (lambda (y) (- (square y) x))
                             newton-transform
                             1.0))
+
+(sqrt 2)
