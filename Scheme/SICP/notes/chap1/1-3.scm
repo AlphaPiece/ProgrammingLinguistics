@@ -139,11 +139,13 @@
              1.0)
 
 ;;; This sqrt won't work.
+
 (define (sqrt x)
   (fixed-point (lambda (y) (/ x y))
                1.0))
 
 ;;; A simple modification (average damping).
+
 (define (sqrt x)
   (fixed-point (lambda (y) (average y (/ x y)))
                1.0))
@@ -192,7 +194,6 @@
   (fixed-point (transform g) guess))
 
 ;;; Method 1
-
 (define (sqrt x)
   (fixed-point-of-transform (lambda (y) (/ x y))
                             average-damp
@@ -201,7 +202,6 @@
 (sqrt 2)
 
 ;;; Method 2
-
 (define (sqrt x)
   (fixed-point-of-transform (lambda (y) (- (square y) x))
                             newton-transform
