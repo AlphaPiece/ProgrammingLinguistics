@@ -122,3 +122,6 @@
 (define rect (make-rect s1 s2 s3 s4))
 (rect-perimeter rect)
 (rect-area rect)
+
+;;; Thus, the same perimeter and area procedures work using either
+;;; representation.
