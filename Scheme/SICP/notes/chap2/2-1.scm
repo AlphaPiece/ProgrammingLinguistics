@@ -40,3 +40,16 @@
 (print-rat (add-rat one-half one-third))
 (print-rat (mul-rat one-half one-third))
 (print-rat (add-rat one-third one-third))
+
+;;;
+;;; 2.1.3
+;;;
+
+(define (cons x y)
+  (define (dispatch m)
+    (cond ((= m 0) x)
+          ((= m 1) y)
+          (else (error "Argument not 0 or 1 -- CONS" m))))
+  dispatch)
+(define (car z) (z 0))
+(define (cdr z) (z 1))
