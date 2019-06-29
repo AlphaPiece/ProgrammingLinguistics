@@ -9,10 +9,8 @@
 ;;; Define selectors upper-bound and lower-bound to complete the
 ;;; implementation.
 
-(define (lower-bound z)
-  (min (car z) (cdr z)))
-(define (upper-bound z)
-  (max (car z) (cdr z)))
+(define (lower-bound z) (min (car z) (cdr z)))
+(define (upper-bound z) (max (car z) (cdr z)))
 
 (define x (make-interval 40 81))
 (lower-bound x)
