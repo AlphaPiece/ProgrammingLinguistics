@@ -24,5 +24,6 @@
 (print-interval x)
 (define y (make-interval -7 9))
 (print-interval y)
+
 (print-interval (sub-interval x y))
 (print-interval (sub-interval y x))
