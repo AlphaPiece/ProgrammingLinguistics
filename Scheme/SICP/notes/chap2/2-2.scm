@@ -87,3 +87,30 @@ l2
        items))
 
 (scale-list (list 1 2 3 4 5) 10)
+
+;;;
+;;; 2.2.2
+;;;
+
+(define (length items)
+  (define (iter items count)
+    (newline)
+    (display items)
+    (if (null? items)
+        count
+        (iter (cdr items) (+ count 1))))
+  (iter items 0))
+
+(define (count-leaves items)
+  (cond ((null? items) 0)
+        ((not (pair? items)) 1)
+        (else (+ (count-leaves (car items))
+              (count-leaves (cdr items))))))
+
+(define x (cons (list 1 2) (list 3 4)))
+(length x)
+(count-leaves x)
+
+(define y (list x x))
+(length y)
+(count-leaves y)
