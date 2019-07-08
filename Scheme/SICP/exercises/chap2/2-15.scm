@@ -1,4 +1,4 @@
-;;;; Exercise 2.14
+;;;; Exercise 2.15
 
 (define (make-interval a b)
   (if (< a b)
@@ -51,29 +51,19 @@
                   (add-interval (div-interval one r1)
                                 (div-interval one r2)))))
 
-;;; Lem complains that Alyssa’s program gives different answers for
-;;; the two ways of computing. This is a serious complaint.
-;;;
-;;; Demonstrate that Lem is right. Investigate the behavior of the
-;;; system on a variety of arithmetic expressions. Make some intervals
-;;; A and B, and use them in computing the expressions A/A and A/B.
-;;; You will get the most insight by using intervals whose width is
-;;; a small percentage of the center value. Examine the results of
-;;; the computation in center-percent form (see exercise 2.12).
+;;; Eva Lu Ator, another user, has also noticed the different intervals
+;;; computed by different but algebraically equivalent expressions. She
+;;; says that a formula to compute with intervals using Alyssa’s system
+;;; will produce tighter error bounds if it can be written in such a
+;;; form that no variable that represents an uncertain number is repeated.
+;;; Thus, she says, par2 is a "better" program for parallel resistances
+;;; than par1. Is she right? Why?
 
-(define r1 (make-interval 2 6))
-(define r2 (make-interval 4 9))
+(define r1 (make-interval 997 1003))
+(define r2 (make-interval 997 1003))
 
-(print-interval (par1 r1 r2))       ; [.5333333333333333,9.]
-(print-interval (par2 r1 r2))       ; [1.3333333333333333,3.5999999999999996]
+(print-interval (par1 r1 r2))       ; [495.5179461615154,504.5180541624875]
+(print-interval (par2 r1 r2))       ; [498.5,501.50000000000006]
 
-;;; The two algebraically equivalent formulas yield different result.
-
-(define a (make-interval 997 1003))
-(define b (make-interval 997 1003))
-
-(print-interval (div-interval a a)) ; [.9940179461615154,1.0060180541624875]
-(print-interval (div-interval a b)) ; [.9940179461615154,1.0060180541624875]
-
-;;; Since we haven't define what the identity is in interval arithmetic,
-;;; a/a and a/b yields the same result.
+;;; par2 does produce a tighter error bounds.
+;;; But I am not sure if par2 is better or not.
