@@ -4,9 +4,10 @@
 ;;; procedure that takes a list as argument and returns as its value the list
 ;;; with its elements reversed and with all sublists deep-reversed as well.
 ;;; For example,
-;;;
-;;; (define x (list (list 1 2) (list 3 4)))
-;;;
+
+(define x (list (list 1 2) (list 3 4)))
+x
+
 ;;; x
 ;;; ((1 2) (3 4))
 ;;;
@@ -17,8 +18,6 @@
 ;;; ((4 3) (2 1))
 
 (define nil '())
-(define x (list (list 1 2) (list 3 4) (list 5 6)))
-x
 
 ;;; Iterative Process
 (define (reverse l)
