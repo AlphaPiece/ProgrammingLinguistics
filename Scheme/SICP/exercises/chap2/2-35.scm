@@ -15,6 +15,7 @@
         ((not (pair? tree)) (list tree))
         (else (append (enumerate-tree (car tree))
                       (enumerate-tree (cdr tree))))))
+
 (define (map proc items)
   (if (null? items)
       nil

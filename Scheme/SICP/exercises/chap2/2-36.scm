@@ -10,9 +10,9 @@
 ;;; should be the sequence (22 26 30). Fill in the missing expressions in the
 ;;; following definition of accumulate-n:
 
-(define nil '())
-
 (define s (list (list 1 2 3) (list 4 5 6) (list 7 8 9) (list 10 11 12)))
+
+(define nil '())
 
 (define (accumulate op initial sequence)
   (if (null? sequence)
