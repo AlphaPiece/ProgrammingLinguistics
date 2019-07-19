@@ -25,7 +25,22 @@
 ;;; This gives us an explicit way to square these transformations, and thus we
 ;;; can compute T^n using successive squaring, as in the fast-expt procedure.
 ;;; Put this all together to complete the following procedure, which runs in a
-;;; logarithmic number of steps.
+;;; logarithmic number of steps:
+;;;
+;;; (define (fib n)
+;;;   (fib-iter 1 0 0 1 n))
+;;; (define (fib-iter a b p q count)
+;;;   (cond ((= count 0) b)
+;;;         ((even? count)
+;;;          (fib-iter a b
+;;;                    <??> ; compute p’
+;;;                    <??> ; compute q’
+;;;                    (/ count 2)))
+;;;         (else (fib-iter (+ (* b q) (* a q) (* a p))
+;;;                         (+ (* b p) (* a q))
+;;;                         p
+;;;                         q
+;;;                         (- count 1)))))
 
 ;;; Let (a, b) be a column vector, and T be a linear transformation expressed
 ;;; by

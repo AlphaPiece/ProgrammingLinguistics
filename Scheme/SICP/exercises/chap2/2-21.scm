@@ -13,6 +13,7 @@
 ;;;   (if (null? items)
 ;;;       nil
 ;;;       (cons <??> <??>)))
+;;;
 ;;; (define (square-list items)
 ;;;   (map <??> <??>))
 

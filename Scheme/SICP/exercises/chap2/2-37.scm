@@ -44,6 +44,16 @@
 ;;; Fill in the missing expressions in the following procedures for computing
 ;;; the other matrix operations. (The procedure accumulate-n is defined in
 ;;; exercise 2.36.)
+;;;
+;;; (define (matrix-*-vector m v)
+;;;   (map <??> m))
+;;;
+;;; (define (transpose mat)
+;;;   (accumulate-n <??> <??> mat))
+;;;
+;;; (define (matrix-*-matrix m n)
+;;;   (let ((cols (transpose n)))
+;;;     (map <??> m)))
 
 (define m (list (list 1 2 3 4) (list 4 5 6 6) (list 6 7 8 9)))
 (define v (list 1 2 3 4))
