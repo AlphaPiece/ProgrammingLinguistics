@@ -234,3 +234,52 @@ l2
                    (filter odd? sequence))))
 
 (product-of-squares-of-odd-elements (list 1 2 3 4 5))
+
+(define (prime? n)
+  (define (iter i)
+    (cond ((> (square i) n) true)
+          ((= (remainder n i) 0) false)
+          (else (iter (+ i 1)))))
+  (if (< n 2)
+      false
+      (iter 2)))
+
+(prime? 2)
+(prime? 3)
+(prime? 4)
+(prime? 5)
+(prime? 101)
+(prime? 99)
+
+(define (flatmap proc seq)
+  (accumulate append nil (map proc seq)))
+
+(define (prime-sum? pair)
+  (prime? (+ (car pair) (cadr pair))))
+
+(define (make-pair-sum pair)
+  (list (car pair) (cadr pair) (+ (car pair) (cadr pair))))
+
+(define (prime-sum-pairs n)
+  (map make-pair-sum
+       (filter prime-sum?
+               (flatmap (lambda (i)
+                          (map (lambda (j) (list i j))
+                               (enumerate-interval 1 (- i 1))))
+                        (enumerate-interval 1 n)))))
+
+(prime-sum-pairs 6)
+
+(define (permutations s)
+  (if (null? s)
+      (list nil)
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (permutations (remove x s))))
+               s)))
+
+(define (remove item sequence)
+  (filter (lambda (x) (not (= x item)))
+          sequence))
+
+(permutations (list 1 2 3))
