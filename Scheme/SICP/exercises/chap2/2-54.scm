@@ -16,7 +16,9 @@
 ;;; (cdr b). Using this idea, implement equal? as a procedure.
 
 (define (equal? a b)
-  (cond ((and (not (pair? a)) (not (pair? b)))
+  (cond ((and (number? a) (number? b))
+         (= a b))
+        ((and (not (pair? a)) (not (pair? b)))
          (eq? a b))
         ((and (pair? a) (pair? b))
          (and (equal? (car a) (car b))
@@ -38,7 +40,7 @@
 ;;; #t
 (equal? 3 3)
 
-;;; #f
+;;; #t
 (equal? 3 3.0)
 
 ;;; #t or #f depending on the implementation
