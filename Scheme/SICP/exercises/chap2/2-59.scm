@@ -59,3 +59,12 @@
 (union-set '() (list 1 2))
 (union-set (list 1 2 3 4 5) (list 3 4 5 6))
 (union-set (list 1 2 3) (list 4 5 6))
+
+(define (union-set set1 set2)
+  (fold-right adjoin-set set2 set1))
+
+(union-set '() '())
+(union-set (list 1 2) '())
+(union-set '() (list 1 2))
+(union-set (list 1 2 3 4 5) (list 3 4 5 6))
+(union-set (list 1 2 3) (list 4 5 6))
