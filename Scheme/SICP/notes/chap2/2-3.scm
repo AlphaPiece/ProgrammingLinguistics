@@ -132,6 +132,7 @@
 (define (make-tree entry left right)
   (list entry left right))
 
+;;; Θ(log(n)) steps
 (define (element-of-set? x set)
   (cond ((null? set) false)
         ((= x (entry set)) true)
@@ -140,6 +141,7 @@
         ((> x (entry set))
          (element-of-set? x (right-branch set)))))
 
+;;; Θ(log(n)) steps
 (define (adjoin-set x set)
   (cond ((null? set) (make-tree x '() '()))
         ((= x (entry set)) set)
@@ -151,3 +153,17 @@
          (make-tree (entry set)
                     (left-branch set)
                     (adjoin-set x (right-branch set))))))
+
+;;; Sets and information retrieval
+
+(define (key record) (car record))
+
+(define (lookup given-key set-of-records)
+  (cond ((null? set-of-records) false)
+        ((equal? given-key (key (car set-of-records)))
+         (car set-of-records))
+        (else (lookup given-key (cdr set-of-records)))))
+
+(define set-of-records (list (list 21 "Walker") (list 9 "Noah")))
+
+(lookup 21 set-of-records)
