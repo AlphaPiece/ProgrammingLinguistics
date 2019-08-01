@@ -87,6 +87,8 @@
 
 ;;; b.
 ;;;
-;;; Yes, the two procedures have the same order of growth, which is Θ(n).
+;;; Yes, the two procedures have the same order of growth, which is Θ(n),
+;;; where n is the number of nodes in tree.(Assume that the procedure append
+;;; has order of growth Θ(n).)
 ;;; But since tree->list-1 uses an additional procedure append, it will
 ;;; cost more computational resourse (run slower) than tree->list-2.
