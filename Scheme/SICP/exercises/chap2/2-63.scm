@@ -87,29 +87,29 @@
 
 ;;; b.
 ;;;
-;;; No, tree->list-1 has Θ(nlogn) and tree->list-2 has Θ(n), assuming
+;;; No, tree->list-1 has Θ(n * log(n)) and tree->list-2 has Θ(n), assuming
 ;;; append has Θ(n) and cons has Θ(1).
 ;;;
 ;;; Let n be the number of nodes in tree. Let a, b, and c be some constants.
 ;;;
 ;;; Let T_1 be the runtime of tree->list-1 with input of size n.
 ;;;
-;;;           a,                        if n = 1
+;;;           a,                            if n = 1
 ;;; T_1(n) = 
-;;;           2T_1(n/2) + (1/2)bn + c,  if n > 1
+;;;           2 * T_1(n/2) + (1/2)bn + c,   if n > 1
 ;;;
 ;;; Let T_2 be the runtime of tree->list-1 with input of size n.
 ;;;
-;;;           a,                if n = 1
+;;;           a,                    if n = 1
 ;;; T_2(n) =
-;;;           2T_2(n/2) + c,    if n > 1
+;;;           2 * T_2(n/2) + c,     if n > 1
 ;;;
 ;;; By using substitution method, we can obtain a closed form of T_1(n):
 ;;;
-;;; an + (1/2)bnlog_2(n) + (n - 1),
+;;; an + (1/2)bn * log_2(n) + (n - 1),
 ;;;
 ;;; and a closed form of T_2(n):
 ;;;
 ;;; an + (n - 1).
 ;;;
-;;; Thus, T_1(n) ∈ Θ(nlogn) and T_2(n) ∈ Θ(n).
+;;; Thus, T_1(n) ∈ Θ(n * log(n)) and T_2(n) ∈ Θ(n).
