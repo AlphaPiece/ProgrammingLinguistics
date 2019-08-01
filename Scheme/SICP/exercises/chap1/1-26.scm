@@ -25,9 +25,9 @@
 ;;;
 ;;; Let a, b, c be real constants.
 ;;;
-;;;        a,                 if n = 0
-;;; T(n) = 2 * T(n / 2) + b,  if n > 0 and n % 2 = 0
-;;;        T(n - 1) + c,      if n > 0 and n % 2 = 1
+;;;         a,                  if n = 0
+;;; T(n) =  2 * T(n / 2) + b,   if n > 0 and n % 2 = 0
+;;;         T(n - 1) + c,       if n > 0 and n % 2 = 1
 ;;;
 ;;; In asymptotic analysis, we may always assume that the size of the input is
 ;;; so that the recursive calls always divide the input list evenly.
