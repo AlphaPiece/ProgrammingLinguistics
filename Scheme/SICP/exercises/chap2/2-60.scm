@@ -42,7 +42,7 @@
 
 (remove-set 3 (list 1 2 3 4 2 3 5))
 
-;;; Assume set1 and set2 have the same size n.
+;;; Assume that both set1 and set2 have the same size n.
 
 ;;; non-duplicate:  Θ(n^2) steps
 ;;; duplicate:      Θ(n) steps

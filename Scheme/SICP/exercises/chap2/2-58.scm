@@ -46,6 +46,8 @@
 ;;; a.
 ;;;
 
+(define (sum? e)
+  (and (pair? e) (eq? (cadr e) '+)))
 (define (make-sum a1 a2)
   (cond ((=number? a1 0) a2)
         ((=number? a2 0) a1)
@@ -53,9 +55,9 @@
         (else (list a1 '+ a2))))
 (define (addend e) (car e))
 (define (augend e) (caddr e))
-(define (sum? e)
-  (and (pair? e) (eq? (cadr e) '+)))
 
+(define (product? e)
+  (and (pair? e) (eq? (cadr e) '*)))
 (define (make-product m1 m2)
   (cond ((or (=number? m1 0) (=number? m2 0)) 0)
         ((=number? m1 1) m2)
@@ -64,8 +66,6 @@
         (else (list m1 '* m2))))
 (define (multiplier e) (car e))
 (define (multiplicand e) (caddr e))
-(define (product? e)
-  (and (pair? e) (eq? (cadr e) '*)))
 
 (deriv '(x + 3) 'x)
 (deriv '(x * y) 'x)
@@ -76,4 +76,44 @@
 ;;; b.
 ;;;
 
+(define (sum? e)
+  (and (pair? e) (eq? (cadr e) '+)))
+(define (make-sum a1 a2)
+  (cond ((=number? a1 0) a2)
+        ((=number? a2 0) a1)
+        ((and (number? a1) (number? a2)) (+ a1 a2))
+        (else (list a1 '+ a2))))
+(define (addend e) (car e))
+(define (augend e)
+  (if (null? (cdddr e))
+      (caddr e)  
+      (cddr e)))
 
+(augend '(x + 3))
+(augend '(1 + 2 + 3))
+
+(define (product? e)
+  (and (pair? e) (eq? (cadr e) '*)))
+(define (make-product m1 m2)
+  (cond ((or (=number? m1 0) (=number? m2 0)) 0)
+        ((=number? m1 1) m2)
+        ((=number? m2 1) m1)
+        ((and (number? m1) (number? m2)) (* m1 m2))
+        (else (list m1 '* m2))))
+(define (multiplier e) (car e))
+(define (multiplicand e)
+  (if (null? (cdddr e))
+      (caddr e)
+      (cddr e)))
+
+(multiplicand '(x * y))
+(multiplicand '(2 * 4 * 6))
+
+(deriv '(x + 3) 'x)
+(deriv '(x * y) 'x)
+
+(deriv '(x + (3 * (x + (y + 2)))) 'x)
+(deriv '(x + 3 * (x + y + 2)) 'x)
+
+(deriv '((x * y) + (2 * x)) 'x)
+(deriv '(x * y + 2 * x) 'x)
