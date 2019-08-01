@@ -77,18 +77,13 @@
 
 ;;; Θ(n) steps
 (define (union-set set1 set2)
-  (let ((list1 (tree->list set1))
-        (list2 (tree->list set2)))
-    (let ((result-list (union-set-ordered-list list1 list2)))
-      (list->tree result-list))))
+  (list->tree (union-set-ordered-list (tree->list set1)
+                                      (tree->list set2))))
 
 ;;; Θ(n) steps
 (define (intersection-set set1 set2)
-  (let ((list1 (tree->list set1))
-        (list2 (tree->list set2)))
-    (let ((result-list (intersection-set-ordered-list list1 list2)))
-      (list->tree result-list))))
-
+  (list->tree (intersection-set-ordered-list (tree->list set1)
+                                             (tree->list set2))))
 
 (define tree1 (list->tree (list 1 2 3 4 5)))
 (define tree2 (list->tree (list 3 4 5 6 7)))
