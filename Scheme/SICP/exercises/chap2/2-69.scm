@@ -1,4 +1,4 @@
-;;;; Exercise 2.67
+;;;; Exercise 2.69
 
 (define (make-leaf symbol weight)
   (list 'leaf symbol weight))
@@ -55,29 +55,31 @@
                                (cadr pair))
                     (make-leaf-set (cdr pairs))))))
 
-;;; Define an encoding tree and a sample message:
+;;; The following procedure takes as its argument a list of symbol-frequency
+;;; pairs (where no symbol appears in more than one pair) and generates a
+;;; Huffman encoding tree according to the Huffman algorithm.
 
-(define sample-tree
-  (make-code-tree (make-leaf 'A 4)
-                  (make-code-tree
-                    (make-leaf 'B 2)
-                    (make-code-tree (make-leaf 'D 1)
-                                    (make-leaf 'C 1)))))
+(define (generate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
 
-sample-tree
+;;; Make-leaf-set is the procedure given above that transforms the list of
+;;; pairs into an ordered set of leaves. Successive-merge is the procedure
+;;; you must write, using make-code-tree to successively merge the
+;;; smallest-weight elements of the set until there is only one element
+;;; left, which is the desired Huffman tree. (This procedure is slightly
+;;; tricky, but not really complicated. If you find yourself designing a
+;;; complex procedure, then you are almost certainly doing something wrong.
+;;; You can take significant advantage of the fact that we are using an
+;;; ordered set representation.)
 
+(define (successive-merge leaf-set)
+  (if (<= (length leaf-set) 1)
+      (car leaf-set)
+      (successive-merge (adjoin-set (make-code-tree (car leaf-set)
+                                                    (cadr leaf-set))
+                                    (cddr leaf-set)))))
+
+(define pairs (list (list 'd 1) (list 'c 1) (list 'b 2) (list 'a 4)))
+(define sample-tree (generate-huffman-tree pairs))
 (define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
-
-;;; Use the decode procedure to decode the message, and give the result.
-
-;;;     {A,B,C,D} 8
-;;;       /     \
-;;;     A 4    {B,C,D} 4
-;;;             /     \
-;;;           B 2   {C,D} 2
-;;;                  /    \
-;;;                D 1    C 1
-;;;
-;;; 0110010101110 -> ADABBCA
-
 (decode sample-message sample-tree)
