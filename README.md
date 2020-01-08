@@ -1,4 +1,4 @@
-# ProgrammingLinguistics
+# Programming Linguistics
 
 ## *Some exercises I did in various programming languages.*
 
