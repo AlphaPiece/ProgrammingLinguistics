@@ -22,7 +22,7 @@ Greatest Common Divisor Example
       (gcd b (remainder a b))))
 ```
 
-Why Structure and Interpretation of Computer Programs matters:
+**Why Structure and Interpretation of Computer Programs matters**:
 
 https://people.eecs.berkeley.edu/~bh/sicp.html
 
