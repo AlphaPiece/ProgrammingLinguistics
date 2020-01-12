@@ -1,9 +1,5 @@
-# ProgrammingLinguistics
+# SICP
 
-## *Some exercises I did in various programming languages.*
+Here are all exercises I did from the book *Structure and Interpretation of Computer Programs* (SICP).
 
-- ### Python
-*A Simple Object Model*: http://aosabook.org/en/500L/a-simple-object-model.html
-
-- ### Scheme
-*Structure and Interpretation of Computer Programs*
+![alt text](https://i.warosu.org/data/g/img/0619/53/1503084062464.jpg)
