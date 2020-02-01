@@ -2,7 +2,7 @@
 
 ![Intro Image](https://user-images.githubusercontent.com/30487160/73585690-86b19680-4471-11ea-8a34-03d20fd75740.jpg)
 
-*This repository contains allthe exercises I did from SICP.*
+*This repository contains all the exercises I did from SICP.*
 
 ---
 
