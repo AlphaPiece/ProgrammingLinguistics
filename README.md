@@ -1,6 +1,6 @@
 # Structure and Interpretation of Computer Programs (SICP)
 
-![Intro Image](https://user-images.githubusercontent.com/30487160/73585690-86b19680-4471-11ea-8a34-03d20fd75740.jpg)
+![Intro Image](https://user-images.githubusercontent.com/30487160/105554188-add52980-5cbb-11eb-92c6-cbace8e01778.png)
 
 *This repository contains all the exercises I did from SICP.*
 
